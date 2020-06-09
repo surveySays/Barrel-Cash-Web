@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./App.css";
 
 //Material UI
 import { withStyles } from "@material-ui/core/styles";
@@ -89,9 +90,24 @@ export class Landing extends Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
+      <div
+        style={{
+          overflowY: "scroll",
+          height: "100%",
+          width: "100%",
+          position: "absolute",
+        }}
+        className="scroll"
+      >
         <div className={classes.sectionDark}>
-          <div style={{ width: "80%", paddingLeft: "10%", marginBottom: 50 }}>
+          <div
+            style={{
+              width: "80%",
+              paddingLeft: "10%",
+              marginBottom: 50,
+              maxWidth: 1189,
+            }}
+          >
             <div
               style={{
                 display: "flex",
@@ -168,6 +184,7 @@ export class Landing extends Component {
             style={{
               width: "80%",
               paddingLeft: "10%",
+              maxWidth: 1189,
             }}
           >
             <div
@@ -225,6 +242,7 @@ export class Landing extends Component {
               paddingLeft: "10%",
               marginBottom: 50,
               textAlign: "center",
+              maxWidth: 1189,
             }}
           >
             <h1 style={{ margin: 0, paddingTop: 60 }}>
@@ -244,6 +262,7 @@ export class Landing extends Component {
               marginBottom: 80,
               textAlign: "center",
               paddingTop: 80,
+              maxWidth: 1189,
             }}
           >
             <div style={{ display: "flex" }}>
@@ -294,6 +313,7 @@ export class Landing extends Component {
               width: "80%",
               paddingLeft: "10%",
               marginBottom: 15,
+              maxWidth: 1189,
             }}
           >
             <h2
@@ -361,6 +381,7 @@ export class Landing extends Component {
               width: "80%",
               paddingLeft: "10%",
               marginBottom: 15,
+              maxWidth: 1189,
             }}
           >
             <h2
@@ -446,7 +467,13 @@ export class Landing extends Component {
           </div>
         </div>
         <div className={classes.sectionTest}>
-          <div style={{ display: "flex", width: "100%", position: "relative" }}>
+          <div
+            style={{
+              display: "flex",
+              width: "100%",
+              position: "relative",
+            }}
+          >
             <a
               href="https://brennenboese.com/"
               target="_blank"
