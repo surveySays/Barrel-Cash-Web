@@ -104,7 +104,8 @@ export class Landing extends Component {
           <div
             style={{
               width: "80%",
-              paddingLeft: "10%",
+              marginLeft: "auto",
+              marginRight: "auto",
               marginBottom: 50,
               maxWidth: 1189,
             }}
@@ -234,7 +235,8 @@ export class Landing extends Component {
           <div
             style={{
               width: "80%",
-              paddingLeft: "10%",
+              marginLeft: "auto",
+              marginRight: "auto",
               maxWidth: 1189,
               height: "100%",
               position: "relative",
@@ -297,7 +299,8 @@ export class Landing extends Component {
           <div
             style={{
               width: "80%",
-              paddingLeft: "10%",
+              marginLeft: "auto",
+              marginRight: "auto",
               marginBottom: 50,
               textAlign: "center",
               maxWidth: 1189,
@@ -321,7 +324,8 @@ export class Landing extends Component {
           <div
             style={{
               width: "80%",
-              paddingLeft: "10%",
+              marginLeft: "auto",
+              marginRight: "auto",
               marginBottom: 80,
               textAlign: "center",
               paddingTop: 80,
@@ -418,7 +422,8 @@ export class Landing extends Component {
           <div
             style={{
               width: "80%",
-              paddingLeft: "10%",
+              marginLeft: "auto",
+              marginRight: "auto",
               marginBottom: 15,
               maxWidth: 1189,
             }}
@@ -486,7 +491,8 @@ export class Landing extends Component {
           <div
             style={{
               width: "80%",
-              paddingLeft: "10%",
+              marginLeft: "auto",
+              marginRight: "auto",
               marginBottom: 15,
               maxWidth: 1189,
             }}
@@ -524,7 +530,7 @@ export class Landing extends Component {
                 >
                   <a
                     target="_blank"
-                    href="https://apps.apple.com/us/app/bear-beautiful-writing-app/id1016366447?ls=1"
+                    href="https://github.com/surveySays/Barrel-Cash-Web"
                   >
                     <img
                       alt="Download Barrel Cash on the App Store"
