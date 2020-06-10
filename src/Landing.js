@@ -14,6 +14,7 @@ import DownloadApp from "./DownloadApp.png";
 import TextField from "@material-ui/core/TextField";
 import Github from "./Github.png";
 import Reddit from "./Reddit.png";
+import Barrels from "./Barrels.png";
 
 const useStyles = (theme) => ({
   root: {
@@ -139,7 +140,7 @@ export class Landing extends Component {
             <div style={{ width: 144, height: 48, marginTop: 40 }}>
               <a
                 target="_blank"
-                href="https://apps.apple.com/us/app/bear-beautiful-writing-app/id1016366447?ls=1"
+                //change to ios app store button
               >
                 <img
                   alt="Download Barrel Cash on the App Store"
@@ -159,12 +160,13 @@ export class Landing extends Component {
                   marginTop: 30,
                   width: "100%",
                   position: "relative",
+                  height: 50,
                 }}
               >
                 <form
                   noValidate
                   autoComplete="off"
-                  style={{ width: "40%", position: "relative" }}
+                  style={{ width: "40%", position: "relative", minWidth: 270 }}
                 >
                   <TextField
                     id="outlined-basic"
@@ -178,7 +180,7 @@ export class Landing extends Component {
                     variant="contained"
                     color="primary"
                     style={{
-                      height: "100%",
+                      height: 56,
                       width: 200,
                       backgroundColor: "#a7e8b9",
                       color: "#000000",
@@ -186,6 +188,9 @@ export class Landing extends Component {
                   >
                     Subscribe
                   </Button>
+                </div>
+                <div style={{ left: 20, position: "relative", bottom: 200 }}>
+                  <img style={{ width: 300, height: 300 }} src={Barrels} />
                 </div>
               </div>
             ) : (
@@ -244,7 +249,9 @@ export class Landing extends Component {
               }}
             >
               <div style={{ width: "50%", position: "relative" }}>
-                <h2>User it everywhere</h2>
+                <h2 style={{ maxWidth: "80%", overflowWrap: "break-word" }}>
+                  User it everywhere
+                </h2>
                 <p style={{ maxWidth: "80%", overflowWrap: "break-word" }}>
                   blah blahblahblahblahblah blahblahblah blahblah blah blah blah
                   blah blahblahblahblahblah blahblahblah blahblah blah blah blah
@@ -253,7 +260,9 @@ export class Landing extends Component {
                 </p>
               </div>
               <div style={{ width: "50%", position: "relative" }}>
-                <h2>User it everywhere</h2>
+                <h2 style={{ maxWidth: "80%", overflowWrap: "break-word" }}>
+                  User it everywhere
+                </h2>
                 <p style={{ maxWidth: "80%", overflowWrap: "break-word" }}>
                   blah blahblahblahblahblah blahblahblah blahblah blah blah blah
                   blah blahblahblahblahblah blahblahblah blahblah blah blah blah
