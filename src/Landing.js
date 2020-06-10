@@ -71,6 +71,8 @@ export class Landing extends Component {
     this.state = {
       isDesktop: false,
     };
+    this.Features = React.createRef();
+    this.Docs = React.createRef();
     this.updatePredicate = this.updatePredicate.bind(this);
   }
   componentDidMount() {
@@ -85,6 +87,26 @@ export class Landing extends Component {
   updatePredicate() {
     this.setState({ isDesktop: window.innerWidth > 716 });
   }
+
+  handleOnClickFeatures = (event) => {
+    //.current is verification that your element has rendered
+    if (this.Features.current) {
+      this.Features.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+    }
+  };
+
+  handleOnClickDocs = (event) => {
+    //.current is verification that your element has rendered
+    if (this.Docs.current) {
+      this.Docs.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+    }
+  };
 
   render() {
     const isDesktop = this.state.isDesktop; //break at 716 width, when barrel cash stacks
@@ -126,9 +148,14 @@ export class Landing extends Component {
               <h2 style={{ marginRight: 30 }}>Barrel Cash</h2>
               {isDesktop ? (
                 <div style={{ display: "flex" }}>
-                  <h2 style={{ marginRight: 30 }}>Features</h2>
-
-                  <h2 style={{ marginRight: 30 }}>Documents</h2>
+                  <a onClick={this.handleOnClickFeatures}>
+                    <h2 style={{ marginRight: 30, cursor: "pointer" }}>
+                      Features
+                    </h2>
+                  </a>
+                  <a onClick={this.handleOnClickDocs}>
+                    <h2 style={{ marginRight: 30, cursor: "pointer" }}>Docs</h2>
+                  </a>
                 </div>
               ) : null}
             </div>
@@ -180,6 +207,7 @@ export class Landing extends Component {
                   <Button
                     variant="contained"
                     color="primary"
+                    onClick={this.handleOnClick}
                     style={{
                       height: 56,
                       width: 200,
@@ -295,7 +323,7 @@ export class Landing extends Component {
             </div>
           </div>
         </div>
-        <div className={classes.sectionDark}>
+        <div className={classes.sectionDark} ref={this.Features}>
           <div
             style={{
               width: "80%",
@@ -579,7 +607,7 @@ export class Landing extends Component {
             </div>
           </div>
         </div>
-        <div className={classes.sectionTest}>
+        <div className={classes.sectionTest} ref={this.Docs}>
           <div
             style={{
               display: "flex",
