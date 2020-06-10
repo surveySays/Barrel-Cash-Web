@@ -82,11 +82,11 @@ export class Landing extends Component {
   }
 
   updatePredicate() {
-    this.setState({ isDesktop: window.innerWidth > 850 });
+    this.setState({ isDesktop: window.innerWidth > 716 });
   }
 
   render() {
-    const isDesktop = this.state.isDesktop; //break at 754 width, when barrel cash stacks
+    const isDesktop = this.state.isDesktop; //break at 716 width, when barrel cash stacks
     const { classes } = this.props;
 
     return (
@@ -122,10 +122,13 @@ export class Landing extends Component {
             >
               <Avatar className={classes.avatar} src={Larger} alt="logo" />
               <h2 style={{ marginRight: 30 }}>Barrel Cash</h2>
-              <h2 style={{ marginRight: 30 }}>Features</h2>
+              {isDesktop ? (
+                <div style={{ display: "flex" }}>
+                  <h2 style={{ marginRight: 30 }}>Features</h2>
 
-              <h2 style={{ marginRight: 30 }}>Documents</h2>
-              <h2>FAQ</h2>
+                  <h2 style={{ marginRight: 30 }}>Documents</h2>
+                </div>
+              ) : null}
             </div>
             <Typography variant="h2" style={{ marginTop: 30 }}>
               Budget easily on IOS
@@ -149,31 +152,74 @@ export class Landing extends Component {
                 />
               </a>
             </div>
-
-            <div style={{ display: "flex", marginTop: 30 }}>
-              <form noValidate autoComplete="off">
-                <TextField
-                  id="outlined-basic"
-                  label="Email"
-                  variant="outlined"
-                  style={{ width: 400, fontSize: 10 }}
-                />
-              </form>
-              <div style={{ marginLeft: 20 }}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  style={{
-                    height: "100%",
-                    width: 200,
-                    backgroundColor: "#a7e8b9",
-                    color: "#000000",
-                  }}
+            {isDesktop ? (
+              <div
+                style={{
+                  display: "flex",
+                  marginTop: 30,
+                  width: "100%",
+                  position: "relative",
+                }}
+              >
+                <form
+                  noValidate
+                  autoComplete="off"
+                  style={{ width: "40%", position: "relative" }}
                 >
-                  Subscribe
-                </Button>
+                  <TextField
+                    id="outlined-basic"
+                    label="Email"
+                    variant="outlined"
+                    style={{ width: "100%", fontSize: 10 }}
+                  />
+                </form>
+                <div style={{ marginLeft: 20 }}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    style={{
+                      height: "100%",
+                      width: 200,
+                      backgroundColor: "#a7e8b9",
+                      color: "#000000",
+                    }}
+                  >
+                    Subscribe
+                  </Button>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div
+                style={{ marginTop: 30, width: "100%", position: "relative" }}
+              >
+                <form
+                  noValidate
+                  autoComplete="off"
+                  style={{ width: "40%", position: "relative", minWidth: 270 }}
+                >
+                  <TextField
+                    id="outlined-basic"
+                    label="Email"
+                    variant="outlined"
+                    style={{ width: "100%", fontSize: 10 }}
+                  />
+                </form>
+                <div style={{ marginTop: 20 }}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    style={{
+                      height: "100%",
+                      width: 200,
+                      backgroundColor: "#a7e8b9",
+                      color: "#000000",
+                    }}
+                  >
+                    Subscribe
+                  </Button>
+                </div>
+              </div>
+            )}
             <Typography style={{ marginTop: 20 }}>
               Get updates on Barrel Cash. Never spam.
             </Typography>
@@ -185,6 +231,8 @@ export class Landing extends Component {
               width: "80%",
               paddingLeft: "10%",
               maxWidth: 1189,
+              height: "100%",
+              position: "relative",
             }}
           >
             <div
@@ -197,7 +245,7 @@ export class Landing extends Component {
             >
               <div style={{ width: "50%", position: "relative" }}>
                 <h2>User it everywhere</h2>
-                <p style={{ maxWidth: "80%" }}>
+                <p style={{ maxWidth: "80%", overflowWrap: "break-word" }}>
                   blah blahblahblahblahblah blahblahblah blahblah blah blah blah
                   blah blahblahblahblahblah blahblahblah blahblah blah blah blah
                   blah blahblahblahblahblah blahblahblah blahblah blah blah blah
@@ -206,7 +254,7 @@ export class Landing extends Component {
               </div>
               <div style={{ width: "50%", position: "relative" }}>
                 <h2>User it everywhere</h2>
-                <p style={{ maxWidth: "80%" }}>
+                <p style={{ maxWidth: "80%", overflowWrap: "break-word" }}>
                   blah blahblahblahblahblah blahblahblah blahblah blah blah blah
                   blah blahblahblahblahblah blahblahblah blahblah blah blah blah
                   blah blahblahblahblahblah blahblahblah blahblah blah blah blah
@@ -226,7 +274,8 @@ export class Landing extends Component {
                 style={{
                   display: "block",
                   width: "100%",
-                  height: 604,
+                  maxHeight: 500,
+                  height: "100%",
                   position: "relative",
                   margin: 0,
                 }}
@@ -248,7 +297,12 @@ export class Landing extends Component {
             <h1 style={{ margin: 0, paddingTop: 60 }}>
               Welcome to Barrel Cash
             </h1>
-            <video width="100%" height="600" controls style={{ marginTop: 30 }}>
+            <video
+              width="100%"
+              height="60%"
+              controls
+              style={{ marginTop: 30, minHeight: 230 }}
+            >
               {/*may need maxHeight 600, height: 100% */}
               <source src="movie.mp4" type="video/mp4" />
             </video>
@@ -265,46 +319,51 @@ export class Landing extends Component {
               maxWidth: 1189,
             }}
           >
-            <div style={{ display: "flex" }}>
-              <div
-                style={{
-                  width: "60%",
-                  height: "100%",
-                  position: "relative",
-                  margin: 0,
-                }}
-              >
-                <img
+            {isDesktop ? (
+              <div style={{ display: "flex" }}>
+                <div
                   style={{
-                    display: "block",
-                    width: "100%",
-                    height: 604,
+                    width: "60%",
+                    height: "100%",
                     position: "relative",
                     margin: 0,
                   }}
-                  src={Woman}
-                />
+                >
+                  <img
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      height: "100%",
+                      maxHeight: 500,
+                      position: "relative",
+                      margin: 0,
+                      minHeight: 231,
+                      minWidth: 347,
+                    }}
+                    src={Woman}
+                  />
+                </div>
+                <div
+                  style={{
+                    width: "40%",
+                    height: "100%",
+                    position: "relative",
+                    margin: 0,
+                    textAlign: "left",
+                    marginLeft: 40,
+                    marginTop: "auto",
+                    marginBottom: "auto",
+                  }}
+                >
+                  <h2>Save your way</h2>
+                  <p>
+                    blah blahblahblah blahblah blah blah blah blah v v v vblah
+                    blah blah blah blah blah blah blah blah blah blah blah blah
+                    blah blah
+                  </p>
+                </div>
               </div>
-              <div
-                style={{
-                  width: "40%",
-                  height: "100%",
-                  position: "relative",
-                  margin: 0,
-                  textAlign: "left",
-                  marginLeft: 40,
-                  marginTop: "auto",
-                  marginBottom: "auto",
-                }}
-              >
-                <h2>Save your way</h2>
-                <p>
-                  blah blahblahblah blahblah blah blah blah blah v v v vblah
-                  blah blah blah blah blah blah blah blah blah blah blah blah
-                  blah blah
-                </p>
-              </div>
-            </div>
+            ) : null}
           </div>
         </div>
         <div className={classes.sectionTest}>
