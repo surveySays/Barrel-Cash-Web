@@ -363,7 +363,46 @@ export class Landing extends Component {
                   </p>
                 </div>
               </div>
-            ) : null}
+            ) : (
+              <div style={{}}>
+                <div
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    position: "relative",
+                    textAlign: "left",
+                  }}
+                >
+                  <h2>Save your way</h2>
+                  <p>
+                    blah blahblahblah blahblah blah blah blah blah v v v vblah
+                    blah blah blah blah blah blah blah blah blah blah blah blah
+                    blah blah
+                  </p>
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    position: "relative",
+                    margin: 0,
+                  }}
+                >
+                  <img
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      height: "100%",
+                      maxHeight: 500,
+                      position: "relative",
+                      margin: 0,
+                      minHeight: 231,
+                    }}
+                    src={Woman}
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <div className={classes.sectionTest}>
