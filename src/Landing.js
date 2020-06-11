@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 
+//firebase db
+import { db } from "./firebase.js";
+
 //Material UI
 import { withStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
@@ -15,6 +18,9 @@ import TextField from "@material-ui/core/TextField";
 import Github from "./Github.png";
 import Reddit from "./Reddit.png";
 import Barrels from "./Barrels.png";
+
+//Components
+import AlertSuccess from "./AlertSuccess.js";
 
 const useStyles = (theme) => ({
   root: {
@@ -73,6 +79,7 @@ export class Landing extends Component {
       isEmpty: false,
       email: "",
       emailHelper: "",
+      alert: false,
     };
     this.Features = React.createRef();
     this.Docs = React.createRef();
@@ -121,6 +128,19 @@ export class Landing extends Component {
         emailHelper: "*Not a valid email. No spaces.",
       });
     } else {
+      const liame = {
+        liame: this.state.email,
+      };
+
+      db.collection("subscribers").add(liame); // update
+
+      this.setState({ alert: true });
+      setTimeout(
+        function () {
+          this.setState({ alert: false });
+        }.bind(this),
+        4000
+      );
       this.setState({ isEmpty: false, email: "", emailHelper: "" });
     }
   };
@@ -149,6 +169,7 @@ export class Landing extends Component {
         }}
         className="scroll"
       >
+        {this.state.alert ? <AlertSuccess /> : null}
         <div className={classes.sectionDark}>
           <div
             style={{
@@ -172,22 +193,41 @@ export class Landing extends Component {
               }}
             >
               <Avatar className={classes.avatar} src={Larger} alt="logo" />
-              <h2 style={{ marginRight: 30 }}>Barrel Cash</h2>
+              <h2 style={{ marginRight: 30, fontFamily: "Montserrat" }}>
+                Barrel Cash
+              </h2>
               {isDesktop ? (
                 <div style={{ display: "flex" }}>
                   <a onClick={this.handleOnClickFeatures}>
-                    <h2 style={{ marginRight: 30, cursor: "pointer" }}>
+                    <h2
+                      style={{
+                        marginRight: 30,
+                        cursor: "pointer",
+                        fontFamily: "Montserrat",
+                      }}
+                    >
                       Features
                     </h2>
                   </a>
                   <a onClick={this.handleOnClickDocs}>
-                    <h2 style={{ marginRight: 30, cursor: "pointer" }}>Docs</h2>
+                    <h2
+                      style={{
+                        marginRight: 30,
+                        cursor: "pointer",
+                        fontFamily: "Montserrat",
+                      }}
+                    >
+                      Docs
+                    </h2>
                   </a>
                 </div>
               ) : null}
             </div>
-            <Typography variant="h2" style={{ marginTop: 30 }}>
-              Budget easily on IOS
+            <Typography
+              variant="h2"
+              style={{ marginTop: 30, fontFamily: "Montserrat" }}
+            >
+              Budget easily on iOS
             </Typography>
             <Typography style={{ marginTop: 20 }}>
               Barrel Cash is a beautiful, simple way to budget monthly expenses.
@@ -195,7 +235,8 @@ export class Landing extends Component {
             <div style={{ width: 144, height: 48, marginTop: 40 }}>
               <a
                 target="_blank"
-                //change to ios app store button
+                href="https://apps.apple.com/us/app/clash-royale/id1053012308"
+                title="Download Barrel Cash for iOS"
               >
                 <img
                   alt="Download Barrel Cash on the App Store"
@@ -244,6 +285,7 @@ export class Landing extends Component {
                       width: 200,
                       backgroundColor: "#a7e8b9",
                       color: "#000000",
+                      fontFamily: "Montserrat",
                     }}
                   >
                     Subscribe
@@ -284,6 +326,7 @@ export class Landing extends Component {
                     backgroundColor: "#a7e8b9",
                     color: "#000000",
                     marginTop: 20,
+                    fontFamily: "Montserrat",
                   }}
                 >
                   Subscribe
@@ -315,25 +358,35 @@ export class Landing extends Component {
               }}
             >
               <div style={{ width: "50%", position: "relative" }}>
-                <h2 style={{ maxWidth: "80%", overflowWrap: "break-word" }}>
-                  User it everywhere
+                <h2
+                  style={{
+                    maxWidth: "80%",
+                    overflowWrap: "break-word",
+                    fontFamily: "Montserrat",
+                  }}
+                >
+                  Use it everywhere
                 </h2>
                 <p style={{ maxWidth: "80%", overflowWrap: "break-word" }}>
-                  blah blahblahblahblahblah blahblahblah blahblah blah blah blah
-                  blah blahblahblahblahblah blahblahblah blahblah blah blah blah
-                  blah blahblahblahblahblah blahblahblah blahblah blah blah blah
-                  blah blahblahblahblahblah blahblahblah blahblah blah blah blah
+                  Barrel cash works on iPhone, and iPad, so you can save{" "}
+                  <b>easily</b> anywhere. Add custom budgets and deduct bills
+                  while on the go.
                 </p>
               </div>
               <div style={{ width: "50%", position: "relative" }}>
-                <h2 style={{ maxWidth: "80%", overflowWrap: "break-word" }}>
-                  User it everywhere
+                <h2
+                  style={{
+                    maxWidth: "80%",
+                    overflowWrap: "break-word",
+                    fontFamily: "Montserrat",
+                  }}
+                >
+                  Take control of your budget
                 </h2>
                 <p style={{ maxWidth: "80%", overflowWrap: "break-word" }}>
-                  blah blahblahblahblahblah blahblahblah blahblah blah blah blah
-                  blah blahblahblahblahblah blahblahblah blahblah blah blah blah
-                  blah blahblahblahblahblah blahblahblah blahblah blah blah blah
-                  blah blahblahblahblahblah blahblahblah blahblah blah blah blah
+                  Barrel cash was made for <b>you</b>. Tired of using excel or a
+                  budgeting app where your not in control? Your account and
+                  spending habits is completely up to <b>you</b>.
                 </p>
               </div>
             </div>
@@ -370,7 +423,7 @@ export class Landing extends Component {
               maxWidth: 1189,
             }}
           >
-            <h1 style={{ margin: 0, paddingTop: 60 }}>
+            <h1 style={{ margin: 0, paddingTop: 60, fontFamily: "Montserrat" }}>
               Welcome to Barrel Cash
             </h1>
             <video
@@ -432,16 +485,18 @@ export class Landing extends Component {
                     marginBottom: "auto",
                   }}
                 >
-                  <h2>Save your way</h2>
+                  <h2 style={{ fontFamily: "Montserrat" }}>Budget your way</h2>
                   <p>
-                    blah blahblahblah blahblah blah blah blah blah v v v vblah
-                    blah blah blah blah blah blah blah blah blah blah blah blah
-                    blah blah
+                    Barrel cash is <b>perfect</b> for managing your grocery,
+                    gas, and food budget. Easily deduct an amount after going to
+                    the grocery store or getting gas. There are hundreds of
+                    bills to manage, why not <b>make it easy</b> by trusting
+                    barrel cash?
                   </p>
                 </div>
               </div>
             ) : (
-              <div style={{}}>
+              <div>
                 <div
                   style={{
                     width: "100%",
@@ -450,11 +505,13 @@ export class Landing extends Component {
                     textAlign: "left",
                   }}
                 >
-                  <h2>Save your way</h2>
+                  <h2 style={{ fontFamily: "Montserrat" }}>Budget your way</h2>
                   <p>
-                    blah blahblahblah blahblah blah blah blah blah v v v vblah
-                    blah blah blah blah blah blah blah blah blah blah blah blah
-                    blah blah
+                    Barrel cash is <b>perfect</b> for managing your grocery,
+                    gas, and food budget. Easily deduct an amount after going to
+                    the grocery store or getting gas. There are hundreds of
+                    bills to manage, why not
+                    <b>make it easy</b> by trusting barrel cash?
                   </p>
                 </div>
                 <div
@@ -498,6 +555,7 @@ export class Landing extends Component {
                 margin: 0,
                 paddingTop: 25,
                 marginBottom: 15,
+                fontFamily: "Montserrat",
               }}
             >
               Barrel Cash features at a glance
@@ -518,14 +576,14 @@ export class Landing extends Component {
                     of itself each month.
                   </li>
                   <li style={{ marginBottom: 20 }}>
-                    <b>Reocurring & Budgeted</b> expenses are easily manageable
-                    in Barrel Cash. Simple add an expense and watch it take care
-                    of itself each month.
+                    <b>Share an account with someone you trust</b>. Easily add
+                    someone you want to share budgeted bills with and watch for
+                    realtime updates when a bill gets budgeted.
                   </li>
                   <li style={{ marginBottom: 20 }}>
-                    <b>Reocurring & Budgeted</b> expenses are easily manageable
-                    in Barrel Cash. Simple add an expense and watch it take care
-                    of itself each month.
+                    <b>Access anywhere</b>. Log on from your iPhone, or iPad at
+                    the store, home, or on vacation so you never lose track of
+                    your bills.
                   </li>
                 </ul>
               </div>
@@ -537,14 +595,14 @@ export class Landing extends Component {
                     of itself each month.
                   </li>
                   <li style={{ marginBottom: 20 }}>
-                    <b>Reocurring & Budgeted</b> expenses are easily manageable
-                    in Barrel Cash. Simple add an expense and watch it take care
-                    of itself each month.
+                    <b>Share an account with someone you trust</b>. Easily add
+                    someone you want to share budgeted bills with and watch for
+                    realtime updates when a bill gets budgeted.
                   </li>
                   <li style={{ marginBottom: 20 }}>
-                    <b>Reocurring & Budgeted</b> expenses are easily manageable
-                    in Barrel Cash. Simple add an expense and watch it take care
-                    of itself each month.
+                    <b>Access anywhere</b>. Log on from your iPhone, or iPad at
+                    the store, home, or on vacation so you never lose track of
+                    your bills.
                   </li>
                 </ul>
               </div>
@@ -567,13 +625,14 @@ export class Landing extends Component {
                 margin: 0,
                 paddingTop: 25,
                 marginBottom: 15,
+                fontFamily: "Montserrat",
               }}
             >
               Barrel Cash on the Web
             </h2>
             <Typography style={{ marginTop: 20, textAlign: "center" }}>
-              A collection of open source code and helpful documents for Barrel
-              Cash.
+              A collection of open source, code, and helpful documents for
+              Barrel Cash.
             </Typography>
             <div
               style={{
