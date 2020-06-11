@@ -70,6 +70,9 @@ export class Landing extends Component {
     super(props);
     this.state = {
       isDesktop: false,
+      isEmpty: false,
+      email: "",
+      emailHelper: "",
     };
     this.Features = React.createRef();
     this.Docs = React.createRef();
@@ -106,6 +109,30 @@ export class Landing extends Component {
         block: "nearest",
       });
     }
+  };
+
+  handleEmailSubscrible = () => {
+    if (
+      this.state.email === "" ||
+      this.emailIsValid(this.state.email) === false
+    ) {
+      this.setState({
+        isEmpty: true,
+        emailHelper: "*Not a valid email. No spaces.",
+      });
+    } else {
+      this.setState({ isEmpty: false, email: "", emailHelper: "" });
+    }
+  };
+
+  emailIsValid(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      email: event.target.value,
+    });
   };
 
   render() {
@@ -200,14 +227,18 @@ export class Landing extends Component {
                     id="outlined-basic"
                     label="Email"
                     variant="outlined"
+                    value={this.state.email}
+                    error={this.state.isEmpty}
                     style={{ width: "100%", fontSize: 10 }}
+                    onChange={this.handleChange}
+                    helperText={this.state.emailHelper}
                   />
                 </form>
                 <div style={{ marginLeft: 20 }}>
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={this.handleOnClick}
+                    onClick={this.handleEmailSubscrible}
                     style={{
                       height: 56,
                       width: 200,
@@ -235,26 +266,31 @@ export class Landing extends Component {
                     id="outlined-basic"
                     label="Email"
                     variant="outlined"
+                    value={this.state.email}
+                    error={this.state.isEmpty}
+                    style={{ width: "100%", fontSize: 10 }}
+                    onChange={this.handleChange}
+                    helperText={this.state.emailHelper}
                     style={{ width: "100%", fontSize: 10 }}
                   />
                 </form>
-                <div style={{ marginTop: 20 }}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    style={{
-                      height: "100%",
-                      width: 200,
-                      backgroundColor: "#a7e8b9",
-                      color: "#000000",
-                    }}
-                  >
-                    Subscribe
-                  </Button>
-                </div>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={this.handleEmailSubscrible}
+                  style={{
+                    height: "100%",
+                    width: 200,
+                    backgroundColor: "#a7e8b9",
+                    color: "#000000",
+                    marginTop: 20,
+                  }}
+                >
+                  Subscribe
+                </Button>
               </div>
             )}
-            <Typography style={{ marginTop: 20 }}>
+            <Typography style={{ marginTop: 30 }}>
               Get updates on Barrel Cash. Never spam.
             </Typography>
           </div>
